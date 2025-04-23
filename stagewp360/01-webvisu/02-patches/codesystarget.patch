@@ -1,0 +1,22 @@
+Index: tmp/opt/codesys/scripts/init-functions
+===================================================================
+--- tmp.orig/opt/codesys/scripts/init-functions
++++ tmp/opt/codesys/scripts/init-functions
+@@ -13,7 +13,7 @@ before_start_runtime () {
+ # exit: none
+ # post: none
+ after_start_runtime () {
+-    :
++    systemctl --user --machine=user@ start codesys.target
+ }
+ 
+ # function before_stop_runtime
+@@ -22,7 +22,7 @@ after_start_runtime () {
+ # exit: none
+ # post: none
+ before_stop_runtime () {
+-    :
++    systemctl --user --machine=user@ stop codesys.target
+ }
+ 
+ # function after_stop_runtime
