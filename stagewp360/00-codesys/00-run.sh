@@ -8,6 +8,7 @@ install -m 644 files/codesysedge_edgearm64_4.15.0.0_arm64.deb "${ROOTFS_DIR}/"
 install -m 644 files/ups_ctrl-1.0.0.deb "${ROOTFS_DIR}/"
 
 on_chroot <<- \EOF
+  export CONTAINER=true
   dpkg -i /codemeter-lite_8.20.6539.500_arm64.deb
   dpkg -i /codesyscontrol_linuxarm64_4.15.0.0_arm64.deb
   dpkg -i /codesysedge_edgearm64_4.15.0.0_arm64.deb
