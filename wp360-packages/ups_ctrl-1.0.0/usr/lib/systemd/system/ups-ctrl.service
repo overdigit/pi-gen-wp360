@@ -1,0 +1,9 @@
+[Unit]
+Description=Controlled shutdown using UPS
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/sbin/ups_ctrl.sh
+
+[Install]
+WantedBy=multi-user.target
