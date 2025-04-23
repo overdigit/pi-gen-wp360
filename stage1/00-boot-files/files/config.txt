@@ -47,5 +47,19 @@ otg_mode=1
 
 [cm5]
 dtoverlay=dwc2,dr_mode=host
+# Enable serial ports
+dtoverlay=uart2
+dtoverlay=uart2,ctsrts
+dtoverlay=uart3
+dtoverlay=uart3,ctsrts
+dtoverlay=uart4
+dtoverlay=uart4,ctsrts
 
 [all]
+# Enable CAN port
+dtoverlay=mcp251xfd,spi1-0
+dtparam=oscillator=40000000
+dtparam=interrupt=25
+dtparam=speed=1000000
+# Force GPIO23 high is shutdown is completed
+dtoverlay=gpio-poweroff,gpiopin=23,active_low=0
