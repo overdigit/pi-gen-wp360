@@ -10,6 +10,6 @@ install -m 644 files/codesys.target "${ROOTFS_DIR}/etc/systemd/user/codesys.targ
 install -m 644 files/webvisu.service "${ROOTFS_DIR}/etc/systemd/user/webvisu.service"
 
 on_chroot <<- \EOF
-  systemctl --user --machine=user@ enable sway
-  systemctl --user --machine=user@ enable webvisu
+  sudo -u $FIRST_USER_NAME systemctl --user enable sway
+  sudo -u $FIRST_USER_NAME systemctl --user enable webvisu
 EOF
