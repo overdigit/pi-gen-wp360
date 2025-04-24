@@ -3,7 +3,7 @@ Description=Controlled shutdown using UPS
 After=multi-user.target
 
 [Service]
-ExecStart=/usr/sbin/ups_ctrl.sh
+ExecStart=/usr/sbin/wp360-ups-ctrl
 
 [Install]
 WantedBy=multi-user.target
