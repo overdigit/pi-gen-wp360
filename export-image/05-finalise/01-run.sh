@@ -121,7 +121,7 @@ xz)
 	--stdout "$IMG_FILE" > "${DEPLOY_DIR}/${ARCHIVE_FILENAME}${IMG_SUFFIX}.img.xz"
 	;;
 zstd)
-	zstd -T0 -"${COMPRESSION_LEVEL}" --stdout "$IMG_FILE" > "${DEPLOT_DIR}/${ARCHIVE_FILENAME}${IMG_SUFFIX}.img.zst"
+	zst -T0 -"${COMPRESSION_LEVEL}" --stdout "$IMG_FILE" > "${DEPLOT_DIR}/${ARCHIVE_FILENAME}${IMG_SUFFIX}.img.zst"
 	;;
 none | *)
 	cp "$IMG_FILE" "$DEPLOY_DIR/"
