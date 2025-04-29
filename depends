@@ -12,7 +12,7 @@ bsdtar:libarchive-tools
 grep
 rsync
 xz:xz-utils
-zstd:zst
+zst
 curl
 xxd
 file
