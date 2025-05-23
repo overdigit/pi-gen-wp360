@@ -1,6 +1,0 @@
-#!/usr/bin/sh
-
-if [[ "$1" = "configure" ]]
-then
-  dpkg-trigger update-initramfs
-fi
