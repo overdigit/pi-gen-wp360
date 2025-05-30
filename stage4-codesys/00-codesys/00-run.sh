@@ -20,6 +20,10 @@ cat >> "${ROOTFS_DIR}/etc/codesyscontrol/CODESYSControl_User.cfg" <<- \EOF
 Linux.Devicefile.2=/dev/ttyAMA2
 Linux.Devicefile.3=/dev/ttyAMA3
 Linux.Devicefile.4=/dev/ttyAMA4
+
+[SysFile]
+PlaceholderFilePath.1=/media/user,$DRIVES$
+PlaceholderFilePath.1.Volatile=1
 EOF
 
 on_chroot <<- \EOF
