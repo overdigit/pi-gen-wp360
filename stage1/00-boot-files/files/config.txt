@@ -57,6 +57,7 @@ dtoverlay=uart4,ctsrts
 
 [all]
 # Enable CAN port
+dtoverlay=spi1-1cs
 dtoverlay=mcp251xfd,spi1-0
 dtparam=oscillator=40000000
 dtparam=interrupt=25
