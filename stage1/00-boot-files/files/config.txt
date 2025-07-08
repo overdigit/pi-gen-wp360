@@ -48,12 +48,9 @@ otg_mode=1
 [cm5]
 dtoverlay=dwc2,dr_mode=host
 # Enable serial ports
-dtoverlay=uart2
-dtoverlay=uart2,ctsrts
-dtoverlay=uart3
-dtoverlay=uart3,ctsrts
-dtoverlay=uart4
-dtoverlay=uart4,ctsrts
+dtoverlay=uart2,rs485
+dtoverlay=uart3,rs485
+dtoverlay=uart4,rs485
 
 [all]
 # Enable CAN port
