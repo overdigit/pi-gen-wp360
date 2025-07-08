@@ -1,0 +1,2 @@
+#!/bin/bash
+sed -e 's,^\s*DISKID=.*$,  DISKID="$(cut /sys/class/net/eth0/address -d: -f3-6 --output-delimiter=)",' /usr/lib/raspberry-sys-mods/firstboot | /bin/bash
