@@ -17,9 +17,9 @@ EOF
 
 cat >> "${ROOTFS_DIR}/etc/codesyscontrol/CODESYSControl_User.cfg" <<- \EOF
 [SysCom]
-Linux.Devicefile.2=/dev/ttyAMA2
-Linux.Devicefile.3=/dev/ttyAMA3
-Linux.Devicefile.4=/dev/ttyAMA4
+Linux.Devicefile.2=/dev/ttyWP360-2
+Linux.Devicefile.3=/dev/ttyWP360-3
+Linux.Devicefile.4=/dev/ttyWP360-4
 
 [SysFile]
 PlaceholderFilePath.1=/media/user,$DRIVES$
