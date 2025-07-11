@@ -52,9 +52,9 @@ dtoverlay=uart4,rs485
 [cm5]
 dtoverlay=dwc2,dr_mode=host
 # Enable serial ports
-dtoverlay=uart2,rs485
-dtoverlay=uart3,rs485
-dtoverlay=uart4,rs485
+dtoverlay=uart2-pi5,ctsrts
+dtoverlay=uart3-pi5,ctsrts
+dtoverlay=uart4-pi5,ctsrts
 
 [all]
 # Enable CAN port
