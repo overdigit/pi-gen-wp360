@@ -45,9 +45,9 @@ arm_boost=1
 # (e.g. for USB device mode) or if USB support is not required.
 otg_mode=1
 # Enable serial ports
-dtoverlay=uart2,rs485
 dtoverlay=uart3,rs485
 dtoverlay=uart4,rs485
+dtoverlay=uart5,rs485
 
 [cm5]
 dtoverlay=dwc2,dr_mode=host
@@ -55,6 +55,8 @@ dtoverlay=dwc2,dr_mode=host
 dtoverlay=uart2-pi5,ctsrts
 dtoverlay=uart3-pi5,ctsrts
 dtoverlay=uart4-pi5,ctsrts
+# Limit max CPU frequency to 1500 MHz to limit thermals
+#arm_freq=1500
 
 [all]
 # Enable CAN port
