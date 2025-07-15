@@ -29,6 +29,8 @@ otg_mode=1
 dtoverlay=uart3,rs485
 dtoverlay=uart4,rs485
 dtoverlay=uart5,rs485
+# External RTC
+dtoverlay=i2c-rtc,pcf85063a,i2c_csi_dsi
 
 [cm5]
 dtoverlay=dwc2,dr_mode=host
@@ -38,6 +40,8 @@ dtoverlay=uart3-pi5,ctsrts
 dtoverlay=uart4-pi5,ctsrts
 # Limit max CPU frequency to 1500 MHz to limit thermals
 #arm_freq=1500
+# External RTC
+dtoverlay=i2c-rtc,pcf85063a,i2c_csi_dsi0
 
 [all]
 # Enable CAN port
@@ -48,5 +52,3 @@ dtparam=interrupt=25
 dtparam=speed=1000000
 # Force GPIO23 high is shutdown is completed
 dtoverlay=gpio-poweroff,gpiopin=23,active_low=0
-# External RTC
-dtoverlay=i2c-rtc,pcf85063a
