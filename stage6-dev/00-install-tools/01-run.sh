@@ -1,7 +1,10 @@
 #!/bin/bash -e
 
-install -m 644 files/clock.sh   "${ROOTFS_DIR}/home/user/"
-install -m 644 files/avg.lua    "${ROOTFS_DIR}/home/user/"
-install -m 644 files/graph.lua  "${ROOTFS_DIR}/home/user/"
-install -m 644 files/run.screen "${ROOTFS_DIR}/home/user/"
-install -m 644 files/run.sh     "${ROOTFS_DIR}/home/user/"
+PKGNAME=wp360-test-tools
+
+install -m 644 files/${PKGNAME}.deb "${ROOTFS_DIR}/"
+
+on_chroot <<- \EOF
+  apt install /${PKGNAME}.deb
+  rm /${PKGNAME}.deb
+EOF
