@@ -22,3 +22,4 @@ gpg
 pigz
 arch-test
 uuidgen:uuid-runtime
+pvcreate:lvm2

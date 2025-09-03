@@ -24,13 +24,15 @@ BOOT_PART_START=$((ALIGN))
 BOOT_PART_SIZE=$(((BOOT_SIZE + ALIGN - 1) / ALIGN * ALIGN))
 ROOT_PART_START=$((BOOT_PART_START + BOOT_PART_SIZE))
 ROOT_PART_SIZE=$(((ROOT_SIZE + ROOT_MARGIN + ALIGN  - 1) / ALIGN * ALIGN))
-IMG_SIZE=$((BOOT_PART_START + BOOT_PART_SIZE + ROOT_PART_SIZE))
+LVM_OVERHEAD=$((ALIGN * 4))
+IMG_SIZE=$((BOOT_PART_START + BOOT_PART_SIZE + ROOT_PART_SIZE + LVM_OVERHEAD))
 
 truncate -s "${IMG_SIZE}" "${IMG_FILE}"
 
 parted --script "${IMG_FILE}" mklabel msdos
 parted --script "${IMG_FILE}" unit B mkpart primary fat32 "${BOOT_PART_START}" "$((BOOT_PART_START + BOOT_PART_SIZE - 1))"
-parted --script "${IMG_FILE}" unit B mkpart primary ext4 "${ROOT_PART_START}" "$((ROOT_PART_START + ROOT_PART_SIZE - 1))"
+parted --script "${IMG_FILE}" unit B mkpart primary ext4 "${ROOT_PART_START}" "$((ROOT_PART_START + ROOT_PART_SIZE - 1 + LVM_OVERHEAD))"
+parted --script "${IMG_FILE}" unit B set 2 lvm on
 
 echo "Creating loop device..."
 cnt=0
@@ -47,7 +49,16 @@ done
 
 ensure_loopdev_partitions "$LOOP_DEV"
 BOOT_DEV="${LOOP_DEV}p1"
-ROOT_DEV="${LOOP_DEV}p2"
+LVM_DEV="${LOOP_DEV}p2"
+
+pvcreate "${LVM_DEV}"
+vgcreate wp360 "${LVM_DEV}"
+echo "Created volume group"
+vgscan
+lvcreate -L "${ROOT_PART_SIZE}B" -Zn -n wp360rootfs wp360
+echo "Created volume"
+
+ROOT_DEV="/dev/mapper/wp360-wp360rootfs"
 
 ROOT_FEATURES="^huge_file"
 for FEATURE in 64bit; do
