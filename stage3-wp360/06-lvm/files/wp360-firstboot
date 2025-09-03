@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -e
+
+case "${1}" in
+  prereqs)
+    exit 0
+    ;;
+esac
+
+if ! grep -q firstboot /proc/cmdline; then
+  exit 0
+fi
+
+. /scripts/functions
+. /scripts/local
+
+log_begin_msg "Resizing root filesystem...\n\nDepending on storage size and speed, this may take a while."
+
+if ! parted -m "/dev/mmcblk0" u s resizepart "2" "100%"; then
+  FAIL_REASON="Partition table resize of the root partition ($DEV) failed\n$FAIL_REASON"
+  return 1
+fi
+
+wait_for_udev 10
+
+pvresize /dev/mmcblk0p2
+
+lvresize -l50%VG --resizefs wp360/rootfs
