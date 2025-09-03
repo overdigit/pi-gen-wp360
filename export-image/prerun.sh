@@ -55,10 +55,10 @@ pvcreate "${LVM_DEV}"
 vgcreate wp360 "${LVM_DEV}"
 echo "Created volume group"
 vgscan
-lvcreate -L "${ROOT_PART_SIZE}B" -Zn -n wp360rootfs wp360
+lvcreate -L "${ROOT_PART_SIZE}B" -Zn -n rootfs wp360
 echo "Created volume"
 
-ROOT_DEV="/dev/mapper/wp360-wp360rootfs"
+ROOT_DEV="/dev/mapper/wp360-rootfs"
 
 ROOT_FEATURES="^huge_file"
 for FEATURE in 64bit; do
