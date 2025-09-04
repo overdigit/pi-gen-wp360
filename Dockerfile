@@ -9,6 +9,9 @@ RUN apt-get -y update && \
         quilt coreutils qemu-user-static debootstrap zerofree zip dosfstools \
         libarchive-tools libcap2-bin rsync grep udev xz-utils curl xxd file kmod bc zst \
         binfmt-support ca-certificates fdisk gpg pigz arch-test \
+        uuid-runtime && \
+    apt-get -y install --no-install-recommends \
+        lvm2 udev \
     && rm -rf /var/lib/apt/lists/*
 
 COPY . /pi-gen/
