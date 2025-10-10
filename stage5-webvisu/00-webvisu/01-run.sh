@@ -1,11 +1,6 @@
 #!/bin/bash -e
 
-install -m 644 files/wp360-webvisu.deb "${ROOTFS_DIR}/"
-
 on_chroot <<- \EOF
-  dpkg -i /wp360-webvisu.deb
-  rm /wp360-webvisu.deb
-
   sudo -u $FIRST_USER_NAME systemctl --user enable sway
   sudo -u $FIRST_USER_NAME systemctl --user enable webvisu
 EOF
