@@ -3,10 +3,10 @@
 true > "${ROOTFS_DIR}/etc/apt/sources.list"
 install -m 644 files/debian.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
 install -m 644 files/raspi.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
-install -m 644 files/overdigit.list "${ROOTFS_DIR}/etc/apt/sources.list.d/"
+install -m 644 files/overdigit.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
 sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/debian.sources"
 sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/raspi.sources"
-sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/overdigit.list"
+sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/overdigit.sources"
 
 if [ -n "$APT_PROXY" ]; then
 	install -m 644 files/51cache "${ROOTFS_DIR}/etc/apt/apt.conf.d/51cache"
