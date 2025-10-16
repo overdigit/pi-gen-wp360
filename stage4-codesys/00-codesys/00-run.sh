@@ -1,10 +1,5 @@
 #!/bin/bash -e
 
-codemeter-lite_8.30.6885.501_arm64.deb
-codesyscontrol_linuxarm64_4.17.0.0_arm64.deb
-codesysedge_edgearm64_4.17.0.0_arm64.deb
-
-
 install -m 644 files/codemeter-lite_8.30.6885.501_arm64.deb "${ROOTFS_DIR}/"
 install -m 644 files/codesyscontrol_linuxarm64_4.17.0.0_arm64.deb "${ROOTFS_DIR}/"
 install -m 644 files/codesyscontrol_linuxarm64_4.17.0.0_arm64.deb "${ROOTFS_DIR}/"
