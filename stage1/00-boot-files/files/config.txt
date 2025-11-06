@@ -33,6 +33,7 @@ dtoverlay=uart5,rs485
 dtoverlay=i2c-rtc,pcf85063a,i2c_csi_dsi
 
 [cm5]
+dtparam=act_led_activelow=off
 dtoverlay=dwc2,dr_mode=host
 # Enable serial ports
 dtoverlay=uart2-pi5,ctsrts
