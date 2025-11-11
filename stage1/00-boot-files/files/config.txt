@@ -51,8 +51,8 @@ dtoverlay=mcp251xfd,spi1-0
 dtparam=oscillator=40000000
 dtparam=interrupt=25
 dtparam=speed=1000000
-# Force GPIO23 high is shutdown is completed
-dtoverlay=gpio-poweroff,gpiopin=23,active_low=0
+# Force GPIO23 high when shutdown is completed
+# dtoverlay=gpio-poweroff,gpiopin=23,active_low=0
 dtoverlay=disable-bt
 # Boot from rt kernel
 kernel=kernel8_rt.img
