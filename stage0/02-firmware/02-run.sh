@@ -11,4 +11,5 @@ rm -f "${ROOTFS_DIR}/"{vmlinuz,initrd.img}*
 
 on_chroot <<- \EOF
 apt-mark hold linux-image-rpi-v8-rt
+apt-mark hold linux-headers-rpi-v8-rt
 EOF

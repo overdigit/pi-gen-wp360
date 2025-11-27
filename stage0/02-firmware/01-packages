@@ -4,3 +4,4 @@ linux-image-rpi-2712
 linux-headers-rpi-v8
 linux-headers-rpi-2712
 linux-image-rpi-v8-rt=1:6.12.34-1+rpt1
+linux-headers-rpi-v8-rt=1:6.12.34-1+rpt1
