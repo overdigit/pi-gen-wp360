@@ -31,6 +31,8 @@ dtoverlay=uart4,rs485
 dtoverlay=uart5,rs485
 # External RTC
 dtoverlay=i2c-rtc,pcf85063a,i2c_csi_dsi
+# Power management microcontroller
+dtoverlay=wp360-pmuc-cm4
 
 [cm5]
 dtparam=act_led_activelow=off
@@ -43,6 +45,8 @@ dtoverlay=uart4-pi5,ctsrts
 arm_freq=1500
 # External RTC
 # dtoverlay=i2c-rtc,pcf85063a,i2c_csi_dsi0
+# Power management microcontroller
+dtoverlay=wp360-pmuc-cm5
 
 [all]
 # Enable CAN port
