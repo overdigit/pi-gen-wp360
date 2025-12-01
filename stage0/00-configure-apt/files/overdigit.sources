@@ -1,5 +1,5 @@
 Types: deb
 URIs: http://repository.overdigit.com/debian/
 Suites: RELEASE
-Components: main wp360
+Components: wp360
 Signed-By: /usr/share/keyrings/overdigit-repository-keyring.pgp
