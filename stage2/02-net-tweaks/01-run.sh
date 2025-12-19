@@ -22,3 +22,5 @@ elif [ -d "${ROOTFS_DIR}/var/lib/NetworkManager" ]; then
 		WirelessEnabled=false
 	EOF
 fi
+
+install -m 644 files/iwd.conf "${ROOTFS_DIR}/etc/NetworkManager/conf.d/iwd.conf"
