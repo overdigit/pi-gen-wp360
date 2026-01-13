@@ -1,5 +1,5 @@
 [connection]
-id=static
+id=eth0
 uuid=
 type=ethernet
 interface-name=eth0
