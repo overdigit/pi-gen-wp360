@@ -44,7 +44,8 @@ dtoverlay=uart4-pi5,ctsrts
 # Limit max CPU frequency to 1500 MHz to limit thermals
 arm_freq=1500
 # External RTC
-# dtoverlay=i2c-rtc,pcf85063a,i2c_csi_dsi0
+dtparam=rtc=off
+dtoverlay=i2c-rtc,pcf85063a,i2c_csi_dsi0
 # Power management microcontroller
 dtoverlay=wp360-pmuc-cm5
 
