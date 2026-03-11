@@ -15,17 +15,6 @@ on_chroot <<- \EOF
   rm /codesysedge_edgearm64_4.18.0.0_arm64.deb
 EOF
 
-cat >> "${ROOTFS_DIR}/etc/codesyscontrol/CODESYSControl_User.cfg" <<- \EOF
-[SysCom]
-Linux.Devicefile.2=/dev/ttyWP360-2
-Linux.Devicefile.3=/dev/ttyWP360-3
-Linux.Devicefile.4=/dev/ttyWP360-4
-
-[SysFile]
-PlaceholderFilePath.1=/media/user,$DRIVES$
-PlaceholderFilePath.1.Volatile=1
-EOF
-
 on_chroot <<- \EOF
   systemctl enable codesyscontrol
   systemctl enable codesysedge
