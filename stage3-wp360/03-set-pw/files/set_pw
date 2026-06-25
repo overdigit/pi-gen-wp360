@@ -1,0 +1,36 @@
+#!/bin/bash
+table='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!$'
+serial_str="$(grep Serial /proc/cpuinfo | sed -E 's/Serial\s+:\s+//')"
+serial="$((16#$serial_str))"
+
+state=$((serial))
+sm64() {
+  state=$((state+16#9E3779B97F4A7C15))
+  x=$(( (state^(state>>30))*16#BF58476D1CE4E5B9 ))
+  x=$(( (x^(x>>27))*16#94D049BB133111EB ))
+  x=$(( x^(x>>31) ))
+  echo "$x"
+}
+
+pw=$(
+  n=$(sm64)
+  for i in $(seq 58 -6 4)
+  do
+    c=$((n>>$i&63))
+
+    printf "%s" ${table:$c:1}
+  done
+)
+
+printf "%s\n%s" "$pw" "$pw" | passwd user
+
+rm /etc/systemd/system/default.target.wants/set_pw.service
+
+rm /usr/local/share/set_pw/set_pw
+rmdir /usr/local/share/set_pw
+
+rm /usr/local/lib/systemd/system/set_pw.service
+rmdir /usr/local/lib/systemd/system
+rmdir /usr/local/lib/systemd
+
+systemctl daemon-reload

@@ -1,0 +1,8 @@
+[Unit]
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/share/set_pw/set_pw
+
+[Install]
+WantedBy=default.target
