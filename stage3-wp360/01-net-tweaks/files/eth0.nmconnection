@@ -9,7 +9,7 @@ interface-name=eth0
 [ipv4]
 address1=192.168.1.135/24,192.168.1.1
 dns=1.1.1.1,1.0.0.1;
-method=manual
+method=auto
 route-metric=10000
 
 [ipv6]
