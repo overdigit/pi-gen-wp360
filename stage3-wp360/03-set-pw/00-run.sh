@@ -1,5 +1,11 @@
 #!/bin/bash
 
+case "$IMG_NAME" in
+  wp360-test)
+    exit 0
+  ;;
+esac
+
 install -d -m 755 "${ROOTFS_DIR}/usr/local/share/set_pw"
 install -m 755 files/set_pw "${ROOTFS_DIR}/usr/local/share/set_pw/"
 
