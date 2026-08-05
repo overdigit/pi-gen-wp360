@@ -3,10 +3,8 @@
 true > "${ROOTFS_DIR}/etc/apt/sources.list"
 install -m 644 files/debian.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
 install -m 644 files/raspi.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
-install -m 644 files/overdigit.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
 sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/debian.sources"
 sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/raspi.sources"
-sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/overdigit.sources"
 
 if [ -n "$APT_PROXY" ]; then
 	install -m 644 files/51cache "${ROOTFS_DIR}/etc/apt/apt.conf.d/51cache"
@@ -24,7 +22,18 @@ fi
 
 install -m 644 files/raspberrypi-archive-keyring.pgp "${ROOTFS_DIR}/usr/share/keyrings/"
 
-install -m 644 files/overdigit-repository-keyring.pgp "${ROOTFS_DIR}/usr/share/keyrings/"
+case "$IMG_NAME" in
+  wp360-test)
+    install -m 644 files/overdigit-testing.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
+    sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/overdigit-testing.sources"
+    install -m 644 files/overdigit-testing-repository-keyring.pgp "${ROOTFS_DIR}/usr/share/keyrings/"
+    ;;
+  *)
+    install -m 644 files/overdigit.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
+    sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/overdigit.sources"
+    install -m 644 files/overdigit-repository-keyring.pgp "${ROOTFS_DIR}/usr/share/keyrings/"
+    ;;
+esac
 
 on_chroot <<- \EOF
 	ARCH="$(dpkg --print-architecture)"

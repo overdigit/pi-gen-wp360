@@ -1,0 +1,5 @@
+Types: deb
+URIs: http://repository.overdigit.com/debian-testing/
+Suites: RELEASE
+Components: wp360
+Signed-By: /usr/share/keyrings/overdigit-testing-repository-keyring.pgp
