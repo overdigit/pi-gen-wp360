@@ -30,6 +30,10 @@ on_chroot <<- \EOF
   rm /codesysproxy_proxyarm64_4.22.0.0_arm64.deb
 
   usermod -aG dialout,gpio codesyscontrol
+
+  sed -E -i 's/^#(.+)$/\1/' /etc/systemd/system/codesyscontrol.service.d/override.conf
+  sed -i 's/USER_BINARY=codesyscontrol/USER_BINARY=root/' /etc/default/codesyscontrol
+  sed -i 's/GROUP_BINARY=codesyscontrol/GROUP_BINARY=root/' /etc/default/codesyscontrol
 EOF
 
 #on_chroot <<- \EOF
