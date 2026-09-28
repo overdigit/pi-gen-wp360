@@ -36,6 +36,15 @@ on_chroot <<- \EOF
   sed -i 's/GROUP_BINARY=codesyscontrol/GROUP_BINARY=root/' /etc/default/codesyscontrol
 EOF
 
+case "$WP360_IMAGE" in
+  full)
+    :
+  ;;
+  *)
+    sed -i 's/\[CmpUserMgr\]/[CmpUserMgr]\nSECURITY.UserMgmtEnforce=NO/' "${ROOTFS_DIR}/etc/codesyscontrol/CODESYSControl_User.cfg"
+  ;;
+esac
+
 #on_chroot <<- \EOF
 #  systemctl enable codesyscontrol
 #  systemctl enable codesysedge
