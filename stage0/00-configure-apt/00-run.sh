@@ -1,10 +1,23 @@
 #!/bin/bash -e
 
 true > "${ROOTFS_DIR}/etc/apt/sources.list"
-install -m 644 files/debian.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
-install -m 644 files/raspi.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
-sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/debian.sources"
-sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/raspi.sources"
+case "$WP360_IMAGE" in
+  development)
+    install -m 644 files/debian.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
+    install -m 644 files/raspi.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
+    sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/debian.sources"
+    sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/raspi.sources"
+    ;;
+  testing|full)
+    :
+    ;;
+  *)
+    echo "###############################"
+    echo "# INVALID WP360_IMAGE: ${WP360_IMAGE}"
+    echo "###############################"
+    exit 1
+    ;;
+esac
 
 if [ -n "$APT_PROXY" ]; then
 	install -m 644 files/51cache "${ROOTFS_DIR}/etc/apt/apt.conf.d/51cache"
@@ -22,16 +35,25 @@ fi
 
 install -m 644 files/raspberrypi-archive-keyring.pgp "${ROOTFS_DIR}/usr/share/keyrings/"
 
-case "$IMG_NAME" in
-  wp360-test)
-    install -m 644 files/overdigit-testing.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
-    sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/overdigit-testing.sources"
+case "$WP360_IMAGE" in
+  development)
+    install -m 644 files/overdigit-development.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
+    sed -i "s/WP360_RELEASE/${WP360_RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/overdigit-development.sources"
     install -m 644 files/overdigit-testing-repository-keyring.pgp "${ROOTFS_DIR}/usr/share/keyrings/"
     ;;
-  *)
+  testing)
+    install -m 644 files/overdigit-testing.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
+    sed -i "s/WP360_RELEASE/${WP360_RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/overdigit-testing.sources"
+    install -m 644 files/overdigit-testing-repository-keyring.pgp "${ROOTFS_DIR}/usr/share/keyrings/"
+    ;;
+  full)
     install -m 644 files/overdigit.sources "${ROOTFS_DIR}/etc/apt/sources.list.d/"
-    sed -i "s/RELEASE/${RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/overdigit.sources"
+    sed -i "s/WP360_RELEASE/${WP360_RELEASE}/g" "${ROOTFS_DIR}/etc/apt/sources.list.d/overdigit.sources"
     install -m 644 files/overdigit-repository-keyring.pgp "${ROOTFS_DIR}/usr/share/keyrings/"
+    ;;
+  *)
+    echo "INVALID WP360_IMAGE (how wasn't this caught earlier?)"
+    exit 1
     ;;
 esac
 
