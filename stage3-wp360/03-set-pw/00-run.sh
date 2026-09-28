@@ -1,7 +1,10 @@
 #!/bin/bash
 
-case "$IMG_NAME" in
-  wp360-test)
+case "$WP360_IMAGE" in
+  full)
+    :
+  ;;
+  *)
     exit 0
   ;;
 esac
