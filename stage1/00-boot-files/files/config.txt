@@ -38,9 +38,9 @@ dtoverlay=wp360-pmuc-cm4
 dtparam=act_led_activelow=off
 dtoverlay=dwc2,dr_mode=host
 # Enable serial ports
-dtoverlay=uart2-pi5,ctsrts
-dtoverlay=uart3-pi5,ctsrts
-dtoverlay=uart4-pi5,ctsrts
+dtoverlay=uart2-pi5
+dtoverlay=uart3-pi5
+dtoverlay=uart4-pi5
 # Limit max CPU frequency to 1500 MHz to limit thermals
 arm_freq=1500
 # External RTC
